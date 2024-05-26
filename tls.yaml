@@ -1,0 +1,11 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixTls
+metadata:
+  name: k8s-tls
+spec:
+  hosts:
+    - zadig.k8s.local
+    - argo.k8s.local
+  secret:
+    name: k8s-tls
+    namespace: default

@@ -1,0 +1,11 @@
+# nexus-basic-auth.yaml
+apiVersion: apisix.apache.org/v2
+kind: ApisixConsumer
+metadata:
+  name: nexus-bauth
+spec:
+  authParameter:
+    basicAuth:
+      value:
+        username: admin
+        password: admin321

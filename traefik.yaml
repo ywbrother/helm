@@ -1,0 +1,17 @@
+#ingressRoute.yaml
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: apisix-tmp
+  namespace: apisix
+spec:
+  entryPoints:
+  - web
+  routes:
+  - match: Host(`apisix.qikqiak.com`)  # 指定域名
+    kind: Rule
+    services:
+    - name: apisix-dashboard 
+      kind: Service  # 引用另外的 Traefik Service   #集群中没查到这个资源，这个是内置的一个标识吗？
+      port: 80
+

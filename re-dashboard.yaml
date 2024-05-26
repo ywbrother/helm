@@ -1,0 +1,25 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: dash-rewrite
+  namespace: apisix
+spec:
+   http:
+     - name: root
+       match:
+           hosts:
+               - ops.qikqiak.com
+           paths:
+              - "/nexus*"
+              - "/*"
+       backends:
+           - serviceName:  apisix-dashboard
+             servicePort: 80 
+       plugins:
+          - name: proxy-rewrite
+            enable: true
+            config:
+                 regex_uri: ["^/nexus(/|$)(.*)",'/$2']
+       authentication:
+           enable: true
+           type: basicAuth

@@ -1,0 +1,33 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: dashboard
+  namespace: apisix
+spec:
+  http:
+    - name: root
+      match:
+        hosts:
+          - apisix.qikqiak.com
+        paths:
+          - '/*'
+      backends:
+        - serviceName: apisix-dashboard
+          servicePort: 80
+---
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: apisix-admin
+  namespace: apisix
+spec:
+  http:
+    - name: root
+      match:
+        hosts:
+          - apisixadmin.qikqiak.com
+        paths:
+          - '/*'
+      backends:
+        - serviceName: apisix-admin
+          servicePort: 9180
